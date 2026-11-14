@@ -122,6 +122,12 @@ input:focus,select:focus{border-color:var(--red);outline:none}
 details.tbl{margin-top:18px}details.tbl summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
 table{border-collapse:collapse;width:100%;font-size:15px;background:var(--bg);border-radius:12px;overflow:hidden}
 th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.yr12{margin-top:18px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px;margin-top:18px}
+.kpis strong{display:block;font:800 clamp(34px,4vw,46px)/1 Archivo,sans-serif;font-stretch:85%}
+.kpis span{display:block;color:var(--mut);font-size:15px;margin-top:8px}
+.kpis em{display:block;font-style:normal;font-weight:700;color:var(--redtx);font-size:15px;margin-top:4px}
+@media(max-width:600px){.kpis{grid-template-columns:minmax(0,1fr)}}
 /* faq */
 .faq>div{max-width:860px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -312,6 +318,16 @@ footer h3{color:#fff;font-size:20px;margin-bottom:10px}footer ol{margin:0;paddin
         <p class="note">Preliminary data, Public Health Agency of Canada, December 2025 release.</p>
       </div>
     </div>
+    <div class="panel yr12">
+      <h3>Overdoses haven't gone away</h3>
+      <p class="sub">Reported in Canada from April 2025 to March 2026, compared with the 12 months before</p>
+      <div class="kpis">
+        <div><strong>25,636</strong><span>opioid emergency department visits, about 70 a day</span><em>Up 10%</em></div>
+        <div><strong>44,152</strong><span>paramedic (EMS) responses to suspected opioid overdoses, about 121 a day</span><em>Up 27%</em></div>
+        <div><strong>Nearly 5&times;</strong><span>as many emergency visits for opioids as for stimulants (5,195)</span></div>
+      </div>
+      <p class="note">Over the same 12 months, opioid deaths fell 10% to 5,615. Key updates, Health Infobase, Public Health Agency of Canada.</p>
+    </div>
     <div class="grid3 ins">
       <div class="sign"><strong>Ages 30 to 39 and 60+</strong><p>People aged 30 to 39 made up the largest share of opioid deaths (26%) and emergency visits (32%) in early 2025. People 60 and over made up the largest share of hospital stays (27%).</p></div>
       <div class="sign"><strong>Mostly in private settings</strong><p>Most overdose deaths happen in private places like homes, so family and roommates are often the first ones there. That's who this campaign is for.</p></div>
@@ -364,7 +380,7 @@ footer h3{color:#fff;font-size:20px;margin-bottom:10px}footer ol{margin:0;paddin
         <li><a href="https://www.canada.ca/en/public-health/news/2024/06/joint-statement-from-the-co-chairs-of-the-special-advisory-committee-on-toxic-drug-poisonings--latest-national-data-on-substance-related-harms.html" target="_blank" rel="noopener">Public Health Agency of Canada, national data statement, June 2024</a> (2023 deaths)</li>
         <li><a href="https://www.canada.ca/en/public-health/news/2025/06/statement-from-the-council-of-chief-medical-officers-of-health-and-the-chief-coroners-and-chief-medical-examiners---latest-national-data-on-substan.html" target="_blank" rel="noopener">Public Health Agency of Canada, national data statement, June 2025</a> (2024 deaths)</li>
         <li><a href="https://www.canada.ca/en/public-health/news/2026/06/statement-from-the-council-of-chief-medical-officers-of-health-latest-national-data-on-substance-related-harms.html" target="_blank" rel="noopener">Public Health Agency of Canada, national data statement, June 2026</a> (2025 deaths)</li>
-        <li><a href="https://health-infobase.canada.ca/substance-related-harms/opioids-stimulants/" target="_blank" rel="noopener">Opioid- and Stimulant-related Harms in Canada, Health Infobase, December 2025</a> (accidental shares, age groups)</li>
+        <li><a href="https://health-infobase.canada.ca/substance-related-harms/opioids-stimulants/" target="_blank" rel="noopener">Opioid- and Stimulant-related Harms in Canada, Health Infobase</a> (key updates for April 2025 to March 2026; accidental shares and age groups from the December 2025 release)</li>
         <li><a href="https://www.canada.ca/en/public-health/news/2025/12/statement-from-the-council-of-chief-medical-officers-of-health---latest-national-data-on-substance-related-harms.html" target="_blank" rel="noopener">Public Health Agency of Canada, national data statement, December 2025</a> (private settings, Alberta naloxone study)</li>
         <li><a href="https://www.ontario.ca/page/get-naloxone-kits-free" target="_blank" rel="noopener">Ontario: get naloxone kits for free</a> and <a href="https://www.ontario.ca/page/ontario-take-home-naloxone-programs" target="_blank" rel="noopener">Ontario take-home naloxone programs</a></li>
         <li><a href="https://www.canada.ca/en/health-canada/services/opioids/about-good-samaritan-drug-overdose-act.html" target="_blank" rel="noopener">Health Canada: about the Good Samaritan Drug Overdose Act</a></li>
@@ -428,7 +444,11 @@ document.getElementById('c2').innerHTML=M.map(m=>`<div><div class="mt"><b>${m.l}
 document.getElementById('tb').innerHTML=[
  ...D.map(o=>[`Opioid deaths, Canada`,o.y,fmt(o.v)]),
  ...D.map(o=>[`Average deaths per day`,o.y,o.d]),
- ...M.map(m=>[`${m.l}: share accidental`,'Jan to Jun 2025',m.p+'%'])
+ ...M.map(m=>[`${m.l}: share accidental`,'Jan to Jun 2025',m.p+'%']),
+ ['Opioid emergency department visits','Apr 2025 to Mar 2026','25,636'],
+ ['Paramedic responses, suspected opioid overdoses','Apr 2025 to Mar 2026','44,152'],
+ ['Stimulant emergency department visits','Apr 2025 to Mar 2026','5,195'],
+ ['Opioid deaths','Apr 2025 to Mar 2026','5,615']
 ].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="r">${r[2]}</td></tr>`).join('');
 
 /* pharmacy finder */
